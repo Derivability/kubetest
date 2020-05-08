@@ -2,7 +2,9 @@ version: '2.1'
 services:
   database:
    container_name: postgresql_alpine
-   image: postgres:alpine
+   image: kubetest:postgresql
+   build:
+     context: postgres/
    restart: always
    healthcheck:
      test: ["CMD-SHELL", "pg_isready -U db_user -d my_db"]
@@ -18,7 +20,7 @@ services:
 
   website:
    container_name: php_73
-   image: derivability:php_img
+   image: kubetest:php_img
    build:
      context: ./
    ports:
