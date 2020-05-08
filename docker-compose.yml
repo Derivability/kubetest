@@ -1,0 +1,10 @@
+version: '2'
+services:
+  website:
+   container_name: php_73
+   image: derivability:php_img
+   build:
+     context: ./
+   ports:
+    - 8080:80
+
