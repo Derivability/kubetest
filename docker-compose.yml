@@ -23,6 +23,8 @@ services:
      context: ./
    ports:
     - 8080:80
+   links:
+    - database:pg_db
    depends_on:
     database:
       condition: service_healthy
