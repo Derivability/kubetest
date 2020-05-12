@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: postgresql
+spec:
+  selector:
+    matchLabels:
+      app: postgresql12
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels: 
+        app: postgresql12
+    spec:
+      containers:
+        - name: database 
+          image: kubetest:postgresql
+          imagePullPolicy: Never
+          env:
+          - name: POSTGRES_DB
+            value: my_db
+          - name: POSTGRES_USER
+            value: db_user
+          - name: POSTGRES_PASSWORD
+            value: password
+          ports:
+          - containerPort: 5432
